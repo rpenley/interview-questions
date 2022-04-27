@@ -22,6 +22,17 @@ def get_zen():
 	response.close
 	return response.text
 
+@app.route('/users/<user>')
+def get_user(user):
+	response = requests.get(GITHUB_ENDPOINT + '/users/' + user)
+	response.close()
+	return response.json()
+
+@app.route('/users/<user>/orgs')
+def get_user_org(user):
+	response = requests.get(GITHUB_ENDPOINT + '/users/' + user + '/orgs')
+	response.close()
+	return response
 
 if __name__ == '__main__':
 	app.run()
